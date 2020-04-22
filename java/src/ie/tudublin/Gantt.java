@@ -22,12 +22,12 @@ public class Gantt extends PApplet
 	
 	public void mousePressed()
 	{
-		println("Mouse pressed");	
+		System.out.println("Mouse pressed");	
 	}
 
 	public void mouseDragged()
 	{
-		println("Mouse dragged");
+		System.out.println("Mouse dragged");
 	}
 
 	
