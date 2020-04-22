@@ -32,4 +32,14 @@ public class Tasks
         return task;
     }
 
+    public float getStart()
+    {
+        return start;
+    }
+
+    public float getEnd()
+    {
+        return end;
+    }
+
 }
