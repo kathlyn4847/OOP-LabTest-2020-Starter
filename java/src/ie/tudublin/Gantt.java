@@ -17,6 +17,7 @@ public class Gantt extends PApplet
 	float w;
     float h;
 
+
 	public void settings()
 	{
 		size(800, 600);
@@ -46,12 +47,54 @@ public class Gantt extends PApplet
 	{
 		System.out.println("Mouse pressed");
 
-	}
+		float leftSide = 0;
+		float rightSide = 0; 
+		
+
+		for(int i = 0 ; i < tasks.size() ; i ++)
+        {
+            float y = map(i, 0, tasks.size(), border, height - border);
+            if (mouseX > leftSide && mouseX < rightSide + w 
+                && mouseY > y && mouseY < y + h                 
+                )
+                {
+                    tasks.add(tasks.get(i));
+					//mouseDragged(i);
+                    break;
+                }
+
+        }
+
+    }
 
 	public void mouseDragged()
 	{
-
+		int i=0;
 		System.out.println("Mouse dragged");
+			int c =0; //to change colour with colorMode(HSB)
+			float border = width * 0.06f;
+
+			noStroke();
+
+			Tasks t = tasks.get(i);
+
+			float start = 118; // space from edge of screen to start of grid
+			float space = 22; //space between lines
+			float range = t.getEnd() - t.getStart();
+			float moveEnd = t.getEnd() + mouseX;
+
+			range = moveEnd;
+
+			float x = map(i, 1, tasks.size(), border/0.3f, width -70 );
+			float y = map(t.getStart(),1 ,30, start, width - border);
+
+			//make the rectangles
+			fill(c , 255, 255);
+			rect(y, ( x * 0.5f ) + 15, moveEnd, 35, 7);
+
+			c = c+30; //change to next colour
+		
+		
 		
 	}
 
