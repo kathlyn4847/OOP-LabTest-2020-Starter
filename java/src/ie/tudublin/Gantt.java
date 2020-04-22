@@ -73,9 +73,9 @@ public class Gantt extends PApplet
 	public void displayTasks()
 	{
 		colorMode(HSB);
-
+		
 		float border = width * 0.06f;
-		int c =0;
+		int c =0; //to change colour with colorMode(HSB)
 
 		for (int i = 0 ; i < tasks.size() ; i ++)
 		{
@@ -83,21 +83,24 @@ public class Gantt extends PApplet
 
 			Tasks t = tasks.get(i);
 
-			float start = 118;
-			float space = 22;
+			float start = 118; // space from edge of screen to start of grid
+			float space = 22; //space between lines
+			float range = t.getEnd() - t.getStart();
 
 			float x = map(i, 1, tasks.size(), border/0.3f, width -70 );
-			float y = map(i, 1, tasks.size(), border/0.3f, width -70 );
+			float y = map(t.getStart(),1 ,30, start, width - border);
 
+			//rectangles
 			fill(c , 255, 255);
-			rect(map(t.getStart(),1 ,30, start, width -70),
-			     (x*0.5f) + 15, (t.getEnd() - t.getStart()) * space, 35, 7);
+			rect(y, ( x * 0.5f ) + 15, (range) * space, 35, 7);
 
-			c = c+30;
 
+			c = c+30; //change to next colour
+
+			//tasks along side of window
 			fill(255);
 			textAlign(LEFT, CENTER);
-			text(t.getName(), border/1.50f , (y*0.49f)+35);
+			text(t.getName(), border/1.50f , (x*0.49f)+35);
 
 		}
 		
